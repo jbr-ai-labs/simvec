@@ -1,0 +1,6 @@
+# @package _global_
+
+run_args:
+  weak_nodes_mse: True
+  use_saves: True
+  experiment_name: "ChemVec SE"

@@ -1,0 +1,5 @@
+# @package _global_
+
+run_args:
+  use_embeddings_init: "morgan_fingerprint"
+  experiment_name: "ChemVec chem"

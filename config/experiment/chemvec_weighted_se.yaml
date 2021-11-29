@@ -1,0 +1,8 @@
+# @package _global_
+
+run_args:
+  use_weights: "mol_descriptors_191"
+  similarity: "parzen"
+  weak_nodes_mse: True
+  use_saves: True
+  experiment_name: "ChemVec weighted SE"
