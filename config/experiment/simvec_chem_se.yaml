@@ -1,0 +1,7 @@
+# @package _global_
+
+run_args:
+  use_embeddings_init: "morgan_fingerprint"
+  weak_nodes_mse: True
+  use_saves: True
+  experiment_name: "ChemVec chem SE"

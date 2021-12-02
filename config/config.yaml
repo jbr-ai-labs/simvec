@@ -1,0 +1,73 @@
+hydra:
+  run:
+    dir: run_dir
+  sweep:
+    dir: sweep_dir
+    subdir: ${hydra.job.num}
+
+params: 
+  batch_size: 6000
+  embed_dim: 100
+  epoch: 100
+  learning_rate: 1e-3
+  regularization: 0
+  num_of_neg_samples: 6
+  seed: 42
+  use_proteins: False
+  early_stop_e: 1e-3
+  early_stop_k: 7
+  mult_run_folds: 0
+  stay_positive_reg_lambda: 0.0001
+  stay_positive_reg_psi: -4
+
+run_args:
+  log: False # Whether to log run or not, default False
+  gpu: True # Use gpu or not
+  print_progress_every: 1 # Frequency (in epochs) of printing progress")
+  save_every: 10
+  metrics_separately: True # Calculate metrics separately on different edge types
+  use_proteins: False # Use proteins for train 
+  random_val_neg_sampler: False # Use random or honest sampler on validation
+  val_regenerate: False # Generate val neg samples after each usage
+  experiment_name: "TriVec" # Name of experiment for neptune
+  reversed: False # Whether to add reversed drug-drug edges to KG
+  use_embeddings_init: null # Use vector to init embeddings
+  early_stop: False # Use early stopping for train
+  use_weights: null # Specify type of weighted edges, that you want to use, default is None
+  similarity: null # Specify type of similarity for weighted edges
+  weak_nodes_mse: False # Use single SE
+  use_saves: False # Use saves for single SE or not
+  n_closest: 6 # If single SE is used, how many closest nodes to use
+  weak_node_list: null # Provide path to list with weak nodes
+  neg_sampling_strategy: "uniform" # uniform, bernoulli, stay_positive or nscache
+
+data_const:
+  work_dir: "../data"
+  drug_train: "/polyphar_train_new_2.csv"
+  drug_val: "/polyphar_val_new_2.csv"
+  drug_test: "/polyphar_test_new_2.csv"
+  ent_maps: "/ent_maps.csv"
+  rel_maps: "/rel_maps.csv"
+  ppi: "/ppi_data.csv"
+  targets: "/targets_data.csv"
+  save_path: "/trivec_saved"
+  descr_smiles: "/descr_smiles.csv"
+  nearest_drugs: "/weak_closest.pickle"
+  mono_se: "/bio-decagon-mono.csv"
+
+embedding_data:
+  morgan_fingerprint:
+    data: '/chemical_embed_morgan_fp_3_100.csv'
+    similarity_score: 'tanimoto'
+  mol_descriptors_191:
+    data: '/mol_descriptors_191.csv'
+    similarity_score: 'exp'
+  mol_descriptors_100:
+    data: '/mol_descriptors_100.csv'
+    similarity_score: 'exp'
+  hvae_100:
+    data: '/hvae_100.csv'
+    similarity_score: 'lor'
+  hvae_100_:
+    data: '/hvae_100_.csv'
+    similarity_score: 'lor'

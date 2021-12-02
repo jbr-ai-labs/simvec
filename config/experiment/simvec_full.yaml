@@ -1,0 +1,9 @@
+# @package _global_
+
+run_args:
+  use_embeddings_init: "morgan_fingerprint"
+  use_weights: "mol_descriptors_191"
+  similarity: "parzen"
+  weak_nodes_mse: True
+  use_saves: True
+  experiment_name: "ChemVec full"
